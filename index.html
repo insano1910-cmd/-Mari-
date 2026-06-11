@@ -15,12 +15,14 @@
 
 body {
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+display: flex;
+justify-content: center;
+align-items: flex-start;
+overflow-x: hidden;
+overflow-y: auto;
+font-family: Arial, sans-serif;
+background: linear-gradient(135deg, #ff758c, #ff7eb3);
+padding: 20px 0;
 }
 
 .container {
@@ -185,7 +187,7 @@ function mostrarMensagem() {
 
 }
 
-for(let i = 0; i < 50; i++) {
+for(let i = 0; i < 20; i++) {
 
     let coracao = document.createElement("div");
 
