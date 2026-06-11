@@ -1,31 +1,205 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Para Mari ❤️</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background: #fff0f5;
-            padding: 50px;
-        }
-        h1 {
-            color: #e91e63;
-        }
-        p {
-            font-size: 22px;
-            max-width: 700px;
-            margin: auto;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Mari ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+}
+
+.container {
+    background: rgba(255,255,255,0.96);
+    width: 90%;
+    max-width: 750px;
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,.2);
+    z-index: 2;
+}
+
+h1 {
+    color: #e91e63;
+    margin-bottom: 20px;
+}
+
+.intro {
+    color: #555;
+    font-size: 22px;
+    line-height: 1.6;
+}
+
+button {
+    margin-top: 30px;
+    background: #e91e63;
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    font-size: 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+#mensagem {
+    display: none;
+    margin-top: 35px;
+    animation: aparecer 1.5s ease;
+}
+
+.texto {
+    font-size: 22px;
+    line-height: 1.9;
+    color: #444;
+}
+
+.destaque {
+    display: block;
+    margin: 20px 0;
+    font-size: 34px;
+    font-weight: bold;
+    color: #e91e63;
+}
+
+.assinatura {
+    margin-top: 20px;
+    font-size: 24px;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.coracao {
+    position: absolute;
+    color: white;
+    animation: subir 8s linear infinite;
+    user-select: none;
+}
+
+@keyframes subir {
+    0% {
+        transform: translateY(100vh);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-120px);
+        opacity: 0;
+    }
+}
+</style>
+
 </head>
+
 <body>
-    <h1>Feliz Dia dos quase Namorados kkkkkk ❤️</h1>
-    <p>
-        Você é o meu pensamento favorito.
-        Obrigado por fazer meus dias mais leves,
-        meus sorrisos mais sinceros e por ser uma pessoa tão especial.
+
+<div class="container">
+
+```
+<h1>Para Mari ❤️</h1>
+
+<p class="intro">
+    Você recebeu uma carta.
+</p>
+
+<button onclick="mostrarMensagem()">
+    💌 Abrir Carta
+</button>
+
+<div id="mensagem">
+
+    <hr style="margin:25px 0; border:none; border-top:1px solid #ddd;">
+
+    <p class="texto">
+
+        Talvez você não imagine, mas desde que você apareceu, meus dias ficaram um pouco mais leves, meus sorrisos mais fáceis e meus pensamentos... bem, você já ocupa boa parte deles.
+
+        <br><br>
+
+        A verdade é que, em tão pouco tempo, você se tornou alguém muito especial para mim. Alguém que eu gosto de conversar, de lembrar durante o dia e de querer por perto.
+
+        <br><br>
+
+        <span class="destaque">
+            Você é o meu pensamento favorito. ❤️
+        </span>
+
+        Obrigado por ser exatamente quem você é.
+
+        <br><br><br>
+
+        Com carinho,
+
+        <div class="assinatura">
+            Rafael ❤️
+        </div>
+
     </p>
+
+</div>
+```
+
+</div>
+
+<script>
+
+function mostrarMensagem() {
+
+    document.querySelector("button").style.display = "none";
+
+    const mensagem = document.getElementById("mensagem");
+
+    mensagem.style.display = "block";
+
+    mensagem.scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+for(let i = 0; i < 50; i++) {
+
+    let coracao = document.createElement("div");
+
+    coracao.className = "coracao";
+    coracao.innerHTML = "❤️";
+
+    coracao.style.left = Math.random() * 100 + "vw";
+    coracao.style.fontSize = (15 + Math.random() * 25) + "px";
+    coracao.style.animationDelay = Math.random() * 8 + "s";
+
+    document.body.appendChild(coracao);
+}
+
+</script>
+
 </body>
 </html>
