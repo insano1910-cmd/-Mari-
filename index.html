@@ -67,7 +67,7 @@ body {
     box-shadow: 0 15px 40px rgba(0,0,0,.2);
 }
 
-/* 💬 FRASE */
+/* 💬 FRASES */
 #frases {
     margin-top: 20px;
     font-size: 20px;
@@ -156,7 +156,7 @@ button:hover {
 
 <h1>Para <span style="color:#fff; text-shadow:0 0 10px #ff4da6;">Mari</span> ❤️</h1>
 
-<!-- 💬 FRASE ÚNICA -->
+<!-- 💬 FRASES -->
 <div id="frases"></div>
 
 <!-- 💌 BOTÃO -->
@@ -199,37 +199,52 @@ button:hover {
 
 <script>
 
-/* 💬 FRASE ÚNICA */
-const frase = "Eu não sou qualquer um… e isso aqui não é qualquer coisa.";
+/* 💬 FRASES EM SEQUÊNCIA */
+const frases = [
+    "Eu falei que não sou qualquer um… então isso aqui também não seria.",
+    "Se era pra ser comum, eu nem começava."
+];
 
-function mostrarFraseUnica() {
+let index = 0;
+
+function mostrarFrases() {
 
     const container = document.getElementById("frases");
     if (!container) return;
 
-    container.innerHTML = "";
+    function proxima() {
 
-    const el = document.createElement("div");
-    el.className = "frase";
-    el.innerText = frase;
+        if (index >= frases.length) {
+            container.innerHTML = "";
 
-    container.appendChild(el);
+            document.querySelector("button").style.display = "inline-block";
+            return;
+        }
 
-    setTimeout(() => {
-        el.style.opacity = 1;
-        el.style.transform = "translateY(0)";
-    }, 100);
+        const el = document.createElement("div");
+        el.className = "frase";
+        el.innerText = frases[index];
 
-    // some depois
-    setTimeout(() => {
-        el.style.opacity = 0;
+        container.innerHTML = "";
+        container.appendChild(el);
 
         setTimeout(() => {
-            container.innerHTML = "";
-            document.querySelector("button").style.display = "inline-block";
-        }, 700);
+            el.style.opacity = 1;
+            el.style.transform = "translateY(0)";
+        }, 100);
 
-    }, 2500);
+        setTimeout(() => {
+            el.style.opacity = 0;
+
+            setTimeout(() => {
+                index++;
+                proxima();
+            }, 700);
+
+        }, 2500);
+    }
+
+    proxima();
 }
 
 /* 💌 CARTA + MÚSICA */
@@ -255,8 +270,8 @@ function mostrarMensagem() {
     }, 200);
 }
 
-/* 🎬 INÍCIO SEGURO */
-setTimeout(mostrarFraseUnica, 3000);
+/* 🎬 INÍCIO */
+setTimeout(mostrarFrases, 3000);
 
 /* ❤️ CORAÇÕES */
 for (let i = 0; i < 20; i++) {
