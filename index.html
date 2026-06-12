@@ -13,126 +13,113 @@
 }
 
 body {
-    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: black;
+}
+
+/* 🎬 INTRO NETFLIX */
+#intro {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    overflow-x: hidden;
-    overflow-y: auto;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
-    padding: 20px 0;
+    align-items: center;
+    flex-direction: column;
+    z-index: 999;
+    color: #e50914;
+    font-size: 42px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    animation: introFade 3.5s ease forwards;
 }
 
+#intro p {
+    font-size: 16px;
+    color: #fff;
+    margin-top: 10px;
+    opacity: 0.7;
+}
+
+@keyframes introFade {
+    0% { opacity: 0; transform: scale(1.3); }
+    20% { opacity: 1; transform: scale(1); }
+    80% { opacity: 1; }
+    100% { opacity: 0; visibility: hidden; }
+}
+
+/* 🌸 FUNDO PRINCIPAL */
 .container {
-    background: rgba(255,255,255,0.96);
-    width: 90%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+}
+
+/* 💌 CARTA */
+.carta {
+    background: white;
+    width: 85%;
     max-width: 750px;
     padding: 40px;
-    border-radius: 25px;
-    text-align: center;
-    box-shadow: 0 15px 40px rgba(0,0,0,.2);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.4);
+
+    opacity: 0;
+    transform: scale(0.9);
+    animation: aparecerCarta 1.5s ease forwards;
+    animation-delay: 3.5s;
 }
 
-h1 {
-    color: #e91e63;
-    margin-bottom: 20px;
-}
-
-.intro {
-    color: #555;
-    font-size: 22px;
-    line-height: 1.6;
-}
-
-button {
-    margin-top: 30px;
-    background: #e91e63;
-    color: white;
-    border: none;
-    padding: 15px 35px;
-    font-size: 20px;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: .3s;
-}
-
-button:hover {
-    transform: scale(1.05);
-}
-
-#mensagem {
-    display: none;
-    margin-top: 35px;
-    animation: aparecer 1.5s ease;
-}
-
-.texto {
-    font-size: 22px;
-    line-height: 1.9;
-    color: #444;
-}
-
-.destaque {
-    display: block;
-    margin: 20px 0;
-    font-size: 34px;
-    font-weight: bold;
-    color: #e91e63;
-}
-
-.assinatura {
-    margin-top: 20px;
-    font-size: 24px;
-}
-
-@keyframes aparecer {
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
+@keyframes aparecerCarta {
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: scale(1);
     }
 }
 
+/* ✍️ EFEITO ESCRITA */
+.texto {
+    font-size: 20px;
+    line-height: 1.8;
+    color: #444;
+    white-space: pre-line;
+    margin-top: 20px;
+}
+
+/* 💖 TÍTULO */
+h1 {
+    color: #e91e63;
+    text-align: center;
+}
+
+/* ❤️ CORAÇÕES */
 .coracao {
     position: absolute;
     color: white;
-    animation: subir 8s linear infinite;
+    animation: subir 6s linear infinite;
 }
 
 @keyframes subir {
-    0% {
-        transform: translateY(100vh);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-120px);
-        opacity: 0;
-    }
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-120px); opacity: 0; }
 }
 
-/* ✨ BRILHO DA MARI */
+/* ✨ MARI BRILHANDO */
 .mari {
     color: #fff;
     font-weight: bold;
-    text-shadow: 0 0 8px #ff4da6,
-                 0 0 18px #ff4da6,
-                 0 0 30px #ff1a8c;
-    animation: brilho 1.6s ease-in-out infinite;
+    text-shadow: 0 0 10px #ff4da6, 0 0 20px #ff4da6;
+    animation: brilho 1.5s ease-in-out infinite;
 }
 
 @keyframes brilho {
-    0%, 100% {
-        transform: scale(1);
-        text-shadow: 0 0 6px #ff4da6, 0 0 12px #ff4da6;
-    }
-    50% {
-        transform: scale(1.08);
-        text-shadow: 0 0 20px #ff4da6, 0 0 40px #ff1a8c;
-    }
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
 }
 </style>
 
@@ -140,80 +127,85 @@ button:hover {
 
 <body>
 
-<!-- 🎵 ÁUDIO (MÚSICA LOCAL) -->
+<!-- 🎬 INTRO -->
+<div id="intro">
+    RAFAEL × <span class="mari">MARI</span>
+    <p>Preparando algo especial...</p>
+</div>
+
+<!-- 🎵 MÚSICA -->
 <audio id="musica" loop>
     <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
+<!-- 💌 CONTEÚDO -->
 <div class="container">
 
-<h1>Para <span class="mari">Mari</span> ❤️</h1>
+    <div class="carta">
 
-<p class="intro">
-    Se você chegou até aqui, é porque isso foi feito especialmente pra você ❤️
-</p>
+        <h1>Para <span class="mari">Mari</span> ❤️</h1>
 
-<button onclick="mostrarMensagem()">
-    💌 Abrir Carta
-</button>
+        <div class="texto" id="texto"></div>
 
-<div id="mensagem">
-
-    <hr style="margin:25px 0; border:none; border-top:1px solid #ddd;">
-
-    <p class="texto">
-        Talvez você não imagine, mas desde que você apareceu, meus dias ficaram mais leves...
-
-        <br><br>
-
-        Você se tornou alguém muito especial para mim.
-
-        <br><br>
-
-        <span class="destaque">
-            Você é o meu pensamento favorito. ❤️
-        </span>
-
-        Com carinho,<br><br>
-        Rafael ❤️
-    </p>
-
-</div>
+    </div>
 
 </div>
 
 <script>
 
-function mostrarMensagem() {
+const textoFinal = `Talvez você não imagine...
+mas desde que você apareceu, tudo ficou mais leve.
 
-    // esconde botão
-    document.querySelector("button").style.display = "none";
+Você virou meu pensamento favorito.
 
-    // mostra carta
-    const mensagem = document.getElementById("mensagem");
-    mensagem.style.display = "block";
+E isso não mudou.
 
-    mensagem.scrollIntoView({ behavior: "smooth" });
+Com carinho,
+Rafael ❤️`;
 
-    // 🎵 música ao clicar (SEM BLOQUEIO)
+let i = 0;
+
+/* 🎬 INÍCIO CINEMA */
+window.addEventListener("load", () => {
+
+    // 🎵 música com fade in
     const musica = document.getElementById("musica");
-    musica.volume = 0.8;
-    musica.play().catch(() => {
-        console.log("Autoplay bloqueado, mas iniciado pelo clique.");
-    });
+    musica.volume = 0;
+    
+    setTimeout(() => {
+        musica.play();
+
+        let fade = setInterval(() => {
+            if (musica.volume < 0.8) {
+                musica.volume += 0.05;
+            } else {
+                clearInterval(fade);
+            }
+        }, 200);
+
+    }, 3500); // depois da intro
+
+    // ✍️ escrita sincronizada
+    setTimeout(escrever, 4000);
+});
+
+/* ✍️ efeito máquina de escrever */
+function escrever() {
+    if (i < textoFinal.length) {
+        document.getElementById("texto").innerHTML += textoFinal.charAt(i);
+        i++;
+        setTimeout(escrever, 40);
+    }
 }
 
-// ❤️ corações animados
-for (let i = 0; i < 20; i++) {
-    let coracao = document.createElement("div");
-    coracao.className = "coracao";
-    coracao.innerHTML = "❤️";
-
-    coracao.style.left = Math.random() * 100 + "vw";
-    coracao.style.fontSize = (15 + Math.random() * 25) + "px";
-    coracao.style.animationDelay = Math.random() * 8 + "s";
-
-    document.body.appendChild(coracao);
+/* ❤️ corações */
+for (let i = 0; i < 25; i++) {
+    let c = document.createElement("div");
+    c.className = "coracao";
+    c.innerHTML = "❤️";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.animationDuration = (4 + Math.random() * 3) + "s";
+    document.body.appendChild(c);
 }
 
 </script>
