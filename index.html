@@ -24,7 +24,7 @@ body {
     padding: 20px 0;
 }
 
-/* 🎬 TELA INICIAL NETFLIX */
+/* 🎬 INTRO NETFLIX */
 #intro {
     position: fixed;
     width: 100%;
@@ -56,7 +56,7 @@ body {
     100% { opacity: 0; visibility: hidden; }
 }
 
-/* 📦 CONTEÚDO */
+/* 📦 CONTAINER */
 .container {
     background: rgba(255,255,255,0.96);
     width: 90%;
@@ -67,8 +67,24 @@ body {
     box-shadow: 0 15px 40px rgba(0,0,0,.2);
 }
 
+/* 💬 FRASES */
+#frases {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #444;
+    min-height: 120px;
+}
+
+.frase {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: 0.8s ease;
+    margin-bottom: 10px;
+}
+
 /* 💌 BOTÃO */
 button {
+    display: none;
     margin-top: 30px;
     background: #e91e63;
     color: white;
@@ -137,19 +153,17 @@ button:hover {
     <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
-<!-- 📦 CONTEÚDO -->
 <div class="container">
 
 <h1>Para <span style="color:#fff; text-shadow:0 0 10px #ff4da6;">Mari</span> ❤️</h1>
 
-<p class="intro">
-    Se você chegou até aqui, é porque decidiu abrir algo que foi feito especialmente para você. ❤️
-</p>
+<!-- 💬 FRASES (ANTES DO BOTÃO) -->
+<div id="frases"></div>
 
-<button onclick="mostrarMensagem()">
-    💌 Abrir Carta
-</button>
+<!-- 💌 BOTÃO -->
+<button onclick="mostrarMensagem()">💌 Abrir Carta</button>
 
+<!-- 💌 CARTA -->
 <div id="mensagem">
 
     <hr style="margin:25px 0; border:none; border-top:1px solid #ddd;">
@@ -186,7 +200,48 @@ button:hover {
 
 <script>
 
-// 💌 abrir carta + música
+/* 🎬 FRASES */
+const frases = [
+    "Eu não sou qualquer um… e isso aqui não é qualquer coisa.",
+    "Eu falei que não ia fazer como os outros… então fiz melhor.",
+    "Se era pra ser comum, eu nem começava.",
+    "Não é só uma carta. É do meu jeito."
+];
+
+let i = 0;
+
+function mostrarFrases() {
+
+    const container = document.getElementById("frases");
+
+    const intervalo = setInterval(() => {
+
+        if (i < frases.length) {
+
+            const p = document.createElement("div");
+            p.className = "frase";
+            p.innerText = frases[i];
+
+            container.appendChild(p);
+
+            setTimeout(() => {
+                p.style.opacity = 1;
+                p.style.transform = "translateY(0)";
+            }, 100);
+
+            i++;
+
+        } else {
+            clearInterval(intervalo);
+
+            // 🔥 AGORA MOSTRA O BOTÃO SÓ DEPOIS DAS FRASES
+            document.querySelector("button").style.display = "inline-block";
+        }
+
+    }, 1800);
+}
+
+/* 💌 CARTA + MÚSICA */
 function mostrarMensagem() {
 
     document.querySelector("button").style.display = "none";
@@ -194,14 +249,10 @@ function mostrarMensagem() {
     const mensagem = document.getElementById("mensagem");
     mensagem.style.display = "block";
 
-    mensagem.scrollIntoView({
-        behavior: "smooth"
-    });
+    mensagem.scrollIntoView({ behavior: "smooth" });
 
-    // 🎵 música no clique (sem bloqueio)
     const musica = document.getElementById("musica");
     musica.volume = 0;
-
     musica.play();
 
     let fade = setInterval(() => {
@@ -213,7 +264,10 @@ function mostrarMensagem() {
     }, 200);
 }
 
-// ❤️ corações
+/* 🎬 ORDEM CORRETA */
+setTimeout(mostrarFrases, 3000);
+
+/* ❤️ CORAÇÕES */
 for (let i = 0; i < 20; i++) {
 
     let coracao = document.createElement("div");
