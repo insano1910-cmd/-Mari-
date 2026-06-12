@@ -184,6 +184,28 @@ button:hover {
 <!-- 💌 CARTA -->
 <div id="mensagem">
 
+<div style="text-align:center; margin-bottom:25px;">
+
+    <video
+        id="videoFundo"
+        muted
+        loop
+        playsinline
+        controls
+        style="
+            width:100%;
+            max-width:600px;
+            border-radius:20px;
+            box-shadow:0 10px 25px rgba(0,0,0,.25);
+            display:none;
+        ">
+
+        <source src="video.mp4" type="video/mp4">
+
+    </video>
+
+</div>
+
 <hr style="margin:25px 0; border:none; border-top:1px solid #ddd;">
 
 <p class="texto">
@@ -272,6 +294,11 @@ function mostrarMensagem() {
 
     const mensagem = document.getElementById("mensagem");
     mensagem.style.display = "block";
+    const video = document.getElementById("videoFundo");
+
+video.style.display = "block";
+
+video.play().catch(() => {});
 
     mensagem.scrollIntoView({ behavior: "smooth" });
 
