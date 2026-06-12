@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -22,6 +23,19 @@ body {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #ff758c, #ff7eb3);
     padding: 20px 0;
+}
+
+/* 🎥 VÍDEO */
+#videoFundo{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+    z-index: -1;
+    filter: brightness(0.35);
 }
 
 /* 🎬 INTRO NETFLIX */
@@ -141,6 +155,11 @@ button:hover {
 
 <body>
 
+<!-- 🎥 VÍDEO -->
+<video id="videoFundo" muted loop playsinline>
+    <source src="video.mp4" type="video/mp4">
+</video>
+
 <!-- 🎬 INTRO -->
 <div id="intro">
     RAFAEL × MARI
@@ -165,33 +184,33 @@ button:hover {
 <!-- 💌 CARTA -->
 <div id="mensagem">
 
-    <hr style="margin:25px 0; border:none; border-top:1px solid #ddd;">
+<hr style="margin:25px 0; border:none; border-top:1px solid #ddd;">
 
-    <p class="texto">
+<p class="texto">
 
-        Talvez você não imagine, mas desde que você apareceu, meus dias ficaram um pouco mais leves, meus sorrisos mais fáceis e meus pensamentos... bem, você já ocupa boa parte deles.
+Talvez você não imagine, mas desde que você apareceu, meus dias ficaram um pouco mais leves, meus sorrisos mais fáceis e meus pensamentos... bem, você já ocupa boa parte deles.
 
-        <br><br>
+<br><br>
 
-        A verdade é que, em tão pouco tempo, você se tornou alguém muito especial para mim. Alguém que eu gosto de conversar, de lembrar durante o dia e de querer por perto.
+A verdade é que, em tão pouco tempo, você se tornou alguém muito especial para mim. Alguém que eu gosto de conversar, de lembrar durante o dia e de querer por perto.
 
-        <br><br>
+<br><br>
 
-        <span class="destaque">
-            Você é o meu pensamento favorito. ❤️
-        </span>
+<span class="destaque">
+Você é o meu pensamento favorito. ❤️
+</span>
 
-        Obrigado por ser exatamente quem você é.
+Obrigado por ser exatamente quem você é.
 
-        <br><br><br>
+<br><br><br>
 
-        Com carinho,
+Com carinho,
 
-        <div class="assinatura">
-            Rafael ❤️
-        </div>
+<div class="assinatura">
+Rafael ❤️
+</div>
 
-    </p>
+</p>
 
 </div>
 
@@ -216,7 +235,6 @@ function mostrarFrases() {
 
         if (index >= frases.length) {
             container.innerHTML = "";
-
             document.querySelector("button").style.display = "inline-block";
             return;
         }
@@ -247,7 +265,7 @@ function mostrarFrases() {
     proxima();
 }
 
-/* 💌 CARTA + MÚSICA */
+/* 💌 CARTA + MÚSICA + VÍDEO */
 function mostrarMensagem() {
 
     document.querySelector("button").style.display = "none";
@@ -256,6 +274,10 @@ function mostrarMensagem() {
     mensagem.style.display = "block";
 
     mensagem.scrollIntoView({ behavior: "smooth" });
+
+    const video = document.getElementById("videoFundo");
+    video.style.display = "block";
+    video.play().catch(() => {});
 
     const musica = document.getElementById("musica");
     musica.volume = 0;
@@ -291,3 +313,4 @@ for (let i = 0; i < 20; i++) {
 
 </body>
 </html>
+```
