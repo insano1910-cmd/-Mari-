@@ -32,7 +32,6 @@ body {
     border-radius: 25px;
     text-align: center;
     box-shadow: 0 15px 40px rgba(0,0,0,.2);
-    z-index: 2;
 }
 
 h1 {
@@ -102,7 +101,6 @@ button:hover {
     position: absolute;
     color: white;
     animation: subir 8s linear infinite;
-    user-select: none;
 }
 
 @keyframes subir {
@@ -116,32 +114,24 @@ button:hover {
     }
 }
 
-/* 💖 BRILHO DA MARI */
+/* ✨ BRILHO DA MARI */
 .mari {
     color: #fff;
     font-weight: bold;
     text-shadow: 0 0 8px #ff4da6,
-                 0 0 16px #ff4da6,
-                 0 0 32px #ff1a8c;
+                 0 0 18px #ff4da6,
+                 0 0 30px #ff1a8c;
     animation: brilho 1.6s ease-in-out infinite;
 }
 
 @keyframes brilho {
-    0% {
-        text-shadow: 0 0 5px #ff4da6,
-                     0 0 10px #ff4da6;
+    0%, 100% {
         transform: scale(1);
+        text-shadow: 0 0 6px #ff4da6, 0 0 12px #ff4da6;
     }
     50% {
-        text-shadow: 0 0 20px #ff4da6,
-                     0 0 40px #ff1a8c,
-                     0 0 60px #ff4da6;
         transform: scale(1.08);
-    }
-    100% {
-        text-shadow: 0 0 5px #ff4da6,
-                     0 0 10px #ff4da6;
-        transform: scale(1);
+        text-shadow: 0 0 20px #ff4da6, 0 0 40px #ff1a8c;
     }
 }
 </style>
@@ -150,12 +140,17 @@ button:hover {
 
 <body>
 
+<!-- 🎵 ÁUDIO (MÚSICA LOCAL) -->
+<audio id="musica" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
 <div class="container">
 
 <h1>Para <span class="mari">Mari</span> ❤️</h1>
 
 <p class="intro">
-    Se você chegou até aqui, é porque decidiu abrir algo que foi feito especialmente para você. ❤️
+    Se você chegou até aqui, é porque isso foi feito especialmente pra você ❤️
 </p>
 
 <button onclick="mostrarMensagem()">
@@ -167,12 +162,11 @@ button:hover {
     <hr style="margin:25px 0; border:none; border-top:1px solid #ddd;">
 
     <p class="texto">
-
-        Talvez você não imagine, mas desde que você apareceu, meus dias ficaram um pouco mais leves, meus sorrisos mais fáceis e meus pensamentos... bem, você já ocupa boa parte deles.
+        Talvez você não imagine, mas desde que você apareceu, meus dias ficaram mais leves...
 
         <br><br>
 
-        A verdade é que, em tão pouco tempo, você se tornou alguém muito especial para mim. Alguém que eu gosto de conversar, de lembrar durante o dia e de querer por perto.
+        Você se tornou alguém muito especial para mim.
 
         <br><br>
 
@@ -180,16 +174,8 @@ button:hover {
             Você é o meu pensamento favorito. ❤️
         </span>
 
-        Obrigado por ser exatamente quem você é.
-
-        <br><br><br>
-
-        Com carinho,
-
-        <div class="assinatura">
-            Rafael ❤️
-        </div>
-
+        Com carinho,<br><br>
+        Rafael ❤️
     </p>
 
 </div>
@@ -200,20 +186,26 @@ button:hover {
 
 function mostrarMensagem() {
 
+    // esconde botão
     document.querySelector("button").style.display = "none";
 
+    // mostra carta
     const mensagem = document.getElementById("mensagem");
     mensagem.style.display = "block";
 
-    mensagem.scrollIntoView({
-        behavior: "smooth"
+    mensagem.scrollIntoView({ behavior: "smooth" });
+
+    // 🎵 música ao clicar (SEM BLOQUEIO)
+    const musica = document.getElementById("musica");
+    musica.volume = 0.8;
+    musica.play().catch(() => {
+        console.log("Autoplay bloqueado, mas iniciado pelo clique.");
     });
 }
 
+// ❤️ corações animados
 for (let i = 0; i < 20; i++) {
-
     let coracao = document.createElement("div");
-
     coracao.className = "coracao";
     coracao.innerHTML = "❤️";
 
