@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Mari ❤️</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+min-height:100vh;
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+color:#333;
+}
+
+.container{
+background:rgba(255,255,255,.95);
+padding:35px;
+border-radius:20px;
+width:90%;
+max-width:750px;
+box-shadow:0 15px 40px rgba(0,0,0,.2);
+z-index:2;
+position:relative;
+}
+
+h1{color:#e91e63;margin-bottom:20px}
+
+p{
+font-size:20px;
+line-height:1.8;
+}
+
+button{
+margin-top:25px;
+padding:14px 30px;
+border:none;
+border-radius:30px;
+background:#e91e63;
+color:white;
+font-size:18px;
+cursor:pointer;
+}
+
+.screen{display:none}
+
+/* intro */
+#intro{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+color:#e91e63;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+font-size:40px;
+z-index:999;
+animation:fade 2.5s ease forwards;
+}
+
+#intro p{
+color:white;
+font-size:14px;
+opacity:.7;
+margin-top:10px;
+}
+
+@keyframes fade{
+0%{opacity:0}
+20%{opacity:1}
+80%{opacity:1}
+100%{opacity:0;visibility:hidden}
+}
+
+/* corações */
+.coracao{
+position:absolute;
+color:white;
+font-size:20px;
+animation:subir 8s linear infinite;
+z-index:1;
+}
+
+@keyframes subir{
+0%{transform:translateY(100vh);opacity:1}
+100%{transform:translateY(-120px);opacity:0}
+}
+
+.destaque{
+color:#e91e63;
+font-size:26px;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro">
+❤️ Oi, Mari... ❤️
+<p>Carregando sentimentos...</p>
+</div>
+
+<!-- TELA 1 -->
+<div class="container screen" id="tela1">
+<h1>❤️ Oi, Mari... ❤️</h1>
+
+<p>
+A saudade é estranha.<br>
+Ela aparece nos momentos mais aleatórios.<br>
+Numa música.<br>
+Numa conversa.<br>
+Num lugar qualquer.<br>
+E, ultimamente, ela tem aparecido junto com você.<br><br>
+
+Talvez seja por isso que você esteja aqui agora.<br>
+Porque algumas coisas merecem ser ditas.<br>
+E algumas pessoas merecem saber o quanto são especiais.
+</p>
+
+<button onclick="irTela2()">Continuar ❤️</button>
+</div>
+
+<!-- TELA 2 -->
+<div class="container screen" id="tela2">
+<h1>Antes de abrir...</h1>
+
+<p>
+Quero apenas que leia com calma.<br><br>
+
+Cada palavra aqui foi escrita pensando em você.<br><br>
+
+Sem pressa.<br><br>
+
+Afinal, as melhores coisas da vida costumam acontecer quando damos atenção aos pequenos detalhes.
+</p>
+
+<button onclick="abrirCarta()">
+💌 Abrir carta
+</button>
+</div>
+
+<!-- CARTA -->
+<div class="container screen" id="carta">
+<h1>Para você, Mari ❤️</h1>
+
+<p>
+Eu não sei exatamente quando isso começou, mas a sua falta já virou uma parte estranha dos meus dias.<br><br>
+
+Tem momentos em que tudo o que eu queria era te contar isso: que você faz falta.<br><br>
+
+Eu não fui atrás porque respeitei o seu espaço, mas isso não significa que você deixou de estar nos meus pensamentos.<br><br>
+
+Se um dia quiser voltar a aparecer na minha vida, eu ainda estarei por aqui.
+</p>
+</div>
+
+<script>
+
+// intro
+setTimeout(()=>{
+document.getElementById("intro").style.display="none";
+document.getElementById("tela1").style.display="block";
+},2500);
+
+// navegação
+function irTela2(){
+document.getElementById("tela1").style.display="none";
+document.getElementById("tela2").style.display="block";
+}
+
+function abrirCarta(){
+document.getElementById("tela2").style.display="none";
+document.getElementById("carta").style.display="block";
+}
+
+// corações animados
+for(let i=0;i<25;i++){
+let c=document.createElement("div");
+c.className="coracao";
+c.innerHTML="❤️";
+c.style.left=Math.random()*100+"vw";
+c.style.fontSize=(15+Math.random()*25)+"px";
+c.style.animationDelay=Math.random()*8+"s";
+document.body.appendChild(c);
+}
+
+</script>
+
+</body>
+</html>
